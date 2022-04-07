@@ -3,26 +3,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaxiApps;
 
-namespace TaxiApps
+namespace Taxi_App
 {
-    class Program
+    internal class Program
     {
         static void Main(string[] args)
         {
-            //membuat object taksi
-            Taxi ungu = new Taxi();
-            //pengesetan nilai properties
-            ungu.Name = "bejon";
-            ungu.Status = true;
-            ungu.Passenger = 3;
 
-            //pemanggilan method
-            ungu.TaxiInfo();
-            ungu.PickUpPassenger();
-            ungu.DropOffPassenger();
+            Taxi ungu = new Taxi();
+
+            Console.WriteLine("--- DATA DRIVER TAXI ---");
+            Console.WriteLine();
+
+            Console.Write("Nama Driver :  ");
+            ungu.Name = Console.ReadLine();
+
+            Console.Write("On Duty [Yes or No] :  ");
+            ungu.Status = Console.ReadLine().ToLower() == "yes" ? true : false;
+
+            if (ungu.Status)
+            {
+                Console.Write("Number of Passanger:  ");
+                ungu.Passenger = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine();
+                ungu.TaxiInfo();
+                ungu.PickUpPassenger();
+                ungu.DropOffPassenger();
+            }
+            else
+            {
+                Console.WriteLine();
+                ungu.TaxiInfo();
+                ungu.PickUpPassenger();
+            }
 
             Console.ReadKey();
+
         }
     }
 }
